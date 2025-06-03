@@ -10,15 +10,24 @@ class FinanicalAnalysis:
         self.df.set_index('Date', inplace=True)
 
     def calculate_RSI(self, timeperiod:int = 14):
-        self.df['RSI_'+timeperiod] = ta.RSI(self.df['Close'], timeperiod=timeperiod)
+        self.df['RSI_'+str(timeperiod)] = ta.RSI(self.df['Close'], timeperiod=timeperiod)
     
     def calculate_SMA(self, timeperiod:int=20):
-        self.df['SMA_'+timeperiod] = ta.SMA(self.df['Close'], timeperiod=timeperiod)
+        self.df['SMA_'+str(timeperiod)] = ta.SMA(self.df['Close'], timeperiod=timeperiod)
     def calculate_EMA(self, timeperiod:int=20):
-        self.df['EMA_'+timeperiod] = ta.EMA(self.df['Close'], timeperiod=timeperiod)
+        self.df['EMA_'+str(timeperiod)] = ta.EMA(self.df['Close'], timeperiod=timeperiod)
     
-    def calculate_MACD(self, timeperiod):
+    def calculate_MACD(self):
         self.df['MACD'], self.df['MACD_signal'], self.df['MACD_hist'] = ta.MACD(
         self.df['Close'], fastperiod=12, slowperiod=26, signalperiod=9)
+    def calculate_daily_return(self):
+        self.df['daily_return'] = self.df['Close'].pct_change() * 100
+    
+    def technical_indicators(self):
+        self.calculate_EMA()
+        self.calculate_RSI()
+        self.calculate_SMA()
+        self.calculate_MACD()
+        return self.df;
     
     
