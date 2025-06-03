@@ -21,6 +21,22 @@ class Sentiment:
         self.news_data['date'] = pd.to_datetime(self.news_data['date'], format='mixed', utc=True) 
 
     def compute_sentiment(self, ticker:str):
+        def compute_sentiment(self, ticker: str):
+            """
+            Computes and aggregates sentiment scores for news headlines related to a specific stock ticker.
+
+            If sentiment scores ('neg', 'neu', 'pos', 'compound') are not already present in the news data,
+            this method calculates them using the VADER sentiment analyzer and appends the results to the dataset.
+            It then filters the news data for the specified ticker, aggregates the sentiment scores by date,
+            and returns a DataFrame containing the daily average sentiment scores.
+
+            Args:
+                ticker (str): The stock ticker symbol to filter news headlines.
+
+            Returns:
+                pd.DataFrame: A DataFrame with columns ['date', 'neg', 'neu', 'pos', 'compound'] representing
+                              the average daily sentiment scores for the specified ticker.
+            """
         # Compute sentiment scores if not already present
         if not {'neg', 'neu', 'pos', 'compound'}.issubset(self.news_data.columns):
             vader = SentimentIntensityAnalyzer()
