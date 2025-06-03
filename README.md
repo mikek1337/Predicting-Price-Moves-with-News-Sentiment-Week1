@@ -31,5 +31,6 @@ Follow these steps to set up and run the project:
 
 4. **Running the notebooks**
    ```bash 
-   make sure you create data folder on the root project to store your .csv files
+   make sure you create data folder on the root project to store your raw_analyst_rating.csv files
+   make sure you store the stock data in yfinance_data with this format ticker_historical_data.csv
    ```
