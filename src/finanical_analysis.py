@@ -20,5 +20,7 @@ class FinanicalAnalysis:
     def calculate_MACD(self, timeperiod):
         self.df['MACD'], self.df['MACD_signal'], self.df['MACD_hist'] = ta.MACD(
         self.df['Close'], fastperiod=12, slowperiod=26, signalperiod=9)
+    def calculate_daily_return(self):
+        self.df['daily_return'] = self.df['Close'].pct_change() * 100
     
     
